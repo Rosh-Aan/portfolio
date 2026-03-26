@@ -123,40 +123,53 @@ const experience = [
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    category: "Full Stack",
-    description: "A comprehensive e-commerce solution with real-time inventory, payment processing, and analytics dashboard. Features include AI-powered recommendations and multi-vendor support.",
-    tech: ["Ruby on Rails", "React", "PostgreSQL", "Stripe", "AWS"],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-    live: "#",
-    github: "#"
+    title: "Islam360",
+    category: "Islamic App",
+    description: "World's first & only Islamic search engine. A comprehensive app empowering and connecting Muslims globally with Quran, Hadith, translations, and tafseer.",
+    tech: ["MERN Stack", "MongoDB", "Express", "React", "Node.js"],
+    live: "https://theislam360.com/"
   },
   {
-    title: "Healthcare Platform",
-    category: "HealthTech",
-    description: "HIPAA-compliant healthcare platform with telemedicine integration, appointment scheduling, and patient management. Serving 100+ healthcare providers.",
-    tech: ["Rails", "React", "PostgreSQL", "WebRTC", "AWS"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    live: "#",
-    github: "#"
+    title: "Klar",
+    category: "Home Improvement",
+    description: "Europe's fastest growing D2C startup making home renovation accessible and affordable. Operates across Denmark, Sweden, Norway, UK, Germany, and Estonia.",
+    tech: ["React", "Rails", "GraphQL", "PostgreSQL"],
+    live: "https://klarhome.com/"
   },
   {
-    title: "AI Content Generator",
-    category: "AI/ML Application",
-    description: "AI-powered content generation platform leveraging GPT models for marketing copy, blog posts, and social media content with brand voice customization.",
-    tech: ["Next.js", "Python", "FastAPI", "OpenAI", "Docker"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-    live: "#",
-    github: "#"
+    title: "iRevise",
+    category: "EdTech",
+    description: "Ireland's leading online study platform for Junior Cert & Leaving Cert students. 200K+ students improved their results with exam papers, notes, and video guides.",
+    tech: ["WordPress", "PHP", "MySQL"],
+    live: "https://irevise.com/"
   },
   {
-    title: "FinTech Dashboard",
+    title: "iRevise App",
+    category: "EdTech",
+    description: "Full-featured learning platform with exam creator, real marking schemes, notes, videos, and subscription management via Stripe.",
+    tech: ["Ruby on Rails", "Stripe", "Heroku", "PostgreSQL"],
+    live: "https://app.irevise.com/"
+  },
+  {
+    title: "KK Sports",
+    category: "E-Commerce",
+    description: "Pakistan's premier sports equipment store. Top retailers for cricket, football, badminton, skating, swimming, and fitness gear.",
+    tech: ["Shopify", "Liquid", "Shopify Apps"],
+    live: "https://kksports.com.pk/"
+  },
+  {
+    title: "SnapRent",
     category: "FinTech",
-    description: "Real-time financial analytics dashboard with investment tracking, portfolio management, and automated reporting for institutional investors.",
-    tech: ["React", "Node.js", "MongoDB", "D3.js", "WebSocket"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    live: "#",
-    github: "#"
+    description: "NYC-based fintech startup helping renters avoid upfront move-in costs. Users save thousands in security deposits and broker fees.",
+    tech: ["Ruby on Rails", "Stripe", "AWS", "PostgreSQL"],
+    live: "https://snaprent.com/"
+  },
+  {
+    title: "Deaf Connect",
+    category: "Non-Profit",
+    description: "Australia's leading Deaf services organization. Provides Auslan courses, interpreting, NDIS support, and community resources.",
+    tech: ["Ruby on Rails", "WordPress", "MySQL"],
+    live: "https://deafconnect.org.au/"
   }
 ]
 
@@ -701,6 +714,119 @@ function Experience() {
   )
 }
 
+function ProjectCard({ project, index }) {
+  const [isHovered, setIsHovered] = useState(false)
+  
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, rotateX: -15 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      rotateX: 0,
+      transition: { 
+        duration: 0.6, 
+        delay: index * 0.12,
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  }
+
+  const iconVariants = {
+    rest: { scale: 1, rotate: 0 },
+    hover: { scale: 1.15, rotate: 5, transition: { duration: 0.4, type: "spring" } }
+  }
+
+  return (
+    <motion.div
+      className="project-card"
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <motion.div 
+        className="project-card-glow"
+        animate={{ 
+          opacity: isHovered ? 1 : 0,
+          scale: isHovered ? 1 : 0.8
+        }}
+        transition={{ duration: 0.4 }}
+      />
+      
+      <div className="project-card-content">
+        <div className="project-card-top">
+          <motion.div 
+            className="project-card-icon"
+            variants={iconVariants}
+            animate={isHovered ? "hover" : "rest"}
+          >
+            <Globe size={24} />
+          </motion.div>
+          <motion.div 
+            className="project-card-number"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
+          >
+            {(index + 1).toString().padStart(2, '0')}
+          </motion.div>
+        </div>
+
+        <motion.div 
+          className="project-card-body"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 + index * 0.1 }}
+        >
+          <span className="project-card-category">{project.category}</span>
+          <h3 className="project-card-title">{project.title}</h3>
+          <p className="project-card-desc">{project.description}</p>
+        </motion.div>
+
+        <div className="project-card-footer">
+          <div className="project-card-tags">
+            {project.tech.map((tech, i) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + index * 0.1 + i * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+          
+          <motion.a
+            href={project.live}
+            className="project-card-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span>View Project</span>
+            <ExternalLink size={14} />
+          </motion.a>
+        </div>
+      </div>
+
+      <motion.div 
+        className="project-card-border"
+        animate={{
+          opacity: isHovered ? 1 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  )
+}
+
 function Projects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
@@ -762,37 +888,7 @@ function Projects() {
         
         <div className="projects-grid" ref={ref}>
           {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              className="project-card"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="project-img">
-                <img src={project.image} alt={project.title} />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a href={project.live} className="project-link" title="View Live">
-                      <FaExternalLinkAlt />
-                    </a>
-                    <a href={project.github} className="project-link" title="View Code">
-                      <FaGithub />
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="project-info">
-                <p className="project-category">{project.category}</p>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
-                <div className="project-tech">
-                  {project.tech.map(tech => (
-                    <span key={tech}>{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>
@@ -1032,6 +1128,8 @@ function Contact() {
                   href="https://wa.me/923284379169" 
                   className="social-link" 
                   title="WhatsApp"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
