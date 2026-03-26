@@ -1198,15 +1198,6 @@ function App() {
       <Clients />
       <Contact />
       <Footer />
-      <a 
-        href="https://wa.me/923284379169" 
-        className="whatsapp-float" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        aria-label="Contact on WhatsApp"
-      >
-        <FaWhatsapp size={28} />
-      </a>
     </>
   )
 }
