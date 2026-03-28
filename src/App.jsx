@@ -253,9 +253,9 @@ function Navigation() {
           </ul>
           <button 
             className="mobile-menu-btn"
-            onClick={() => setMobileOpen(true)}
+            onClick={() => setMobileOpen(!mobileOpen)}
           >
-            <Menu size={28} />
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
           <button 
             className="theme-toggle-mobile"
