@@ -18,7 +18,9 @@ import {
   FaBrain,
   FaHandshake,
   FaGlobe,
-  FaGem
+  FaGem,
+  FaSun,
+  FaMoon
 } from 'react-icons/fa'
 import { 
   ExternalLink, 
@@ -201,12 +203,27 @@ const particleData = [
 function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') || 'dark'
+    }
+    return 'dark'
+  })
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
 
   return (
     <>
@@ -224,12 +241,28 @@ function Navigation() {
             <li>
               <a href={personalInfo.resume} className="nav-cta">Resume</a>
             </li>
+            <li>
+              <button 
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              >
+                {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
+              </button>
+            </li>
           </ul>
           <button 
             className="mobile-menu-btn"
             onClick={() => setMobileOpen(true)}
           >
             <Menu size={28} />
+          </button>
+          <button 
+            className="theme-toggle-mobile"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
           </button>
         </div>
       </nav>
@@ -261,6 +294,12 @@ function Navigation() {
             <a href={personalInfo.resume} onClick={() => setMobileOpen(false)}>
               Resume
             </a>
+            <button 
+              className="theme-toggle-mobile-nav"
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? <><FaSun size={20} /> Switch to Light</> : <><FaMoon size={20} /> Switch to Dark</>}
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
