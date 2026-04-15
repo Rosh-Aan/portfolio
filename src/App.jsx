@@ -239,7 +239,7 @@ function Navigation() {
               </li>
             ))}
             <li>
-              <a href={personalInfo.resume} className="nav-cta">Resume</a>
+              <a href={personalInfo.resume} className="nav-cta" target="_blank" rel="noopener noreferrer">Resume</a>
             </li>
             <li>
               <button 
@@ -291,7 +291,7 @@ function Navigation() {
                 {link.name}
               </a>
             ))}
-            <a href={personalInfo.resume} onClick={() => setMobileOpen(false)}>
+            <a href={personalInfo.resume} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
               Resume
             </a>
             <button 
