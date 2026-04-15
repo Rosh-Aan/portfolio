@@ -62,7 +62,7 @@ const personalInfo = {
   email: "work.rosh001@gmail.com",
   phone: "+92 328 4379169",
   bio: "I'm a passionate full-stack developer with expertise in building scalable web applications and microservices. With years of experience in modern technologies, I transform complex problems into elegant, user-friendly solutions.",
-  resume: "#"
+  resume: "/resume.pdf"
 }
 
 const skills = [
@@ -102,24 +102,24 @@ const techLogos = [
 const experience = [
   {
     role: "Senior Full Stack Developer",
-    company: "TechVision Solutions",
-    period: "2022 - Present",
-    description: "Leading development of enterprise SaaS applications serving 50,000+ users. Architected microservices infrastructure reducing response times by 60%. Mentored junior developers and established coding best practices.",
+    company: "TechAlps",
+    period: "2023 - Present",
+    description: "Build and maintain scalable web applications using Ruby on Rails and React. Developed SaaS-based solutions with real-world users. Integrated Stripe payments, including webhook handling and transaction flows. Implemented API integrations and optimized backend performance.Collaborated on deploying and maintaining applications on cloud infrastructure.",
     skills: ["Ruby on Rails", "React", "AWS", "PostgreSQL", "Docker"]
   },
   {
     role: "Full Stack Developer",
-    company: "Digital Dynamics",
-    period: "2020 - 2022",
-    description: "Developed and maintained multiple client-facing web applications. Implemented CI/CD pipelines reducing deployment time by 75%. Collaborated with UX team to improve user engagement by 40%.",
-    skills: ["Node.js", "React", "MongoDB", "Redis", "GCP"]
+    company: "Freelance",
+    period: "2021 - Present",
+    description: "Developed custom web applications for startups and small businesses. Built Shopify and WordPress websites tailored to client needs. Delivered full-stack solutions from frontend UI to backend logic. Improved performance and user experience for existing applications",
+    skills: ["Ruby on Rails", "Node.js", "React", "MongoDB", "Redis", "GCP"]
   },
   {
-    role: "Frontend Developer",
-    company: "StartupXYZ",
-    period: "2019 - 2020",
-    description: "Built responsive web applications from scratch using React. Optimized frontend performance achieving 90+ Lighthouse scores. Integrated third-party APIs for enhanced functionality.",
-    skills: ["React", "JavaScript", "Shopify", "WordPress"]
+    role: "Wordpress & Shopify Developer",
+    company: "Freelance",
+    period: "2021 - Present",
+    description: "I design and develop high-performing WordPress and Shopify websites tailored to business needs. From custom themes and plugins to Shopify store optimization and Liquid development, I focus on building scalable, user-friendly, and conversion-driven solutions. I also handle integrations, SEO optimization, and ongoing maintenance to ensure smooth and secure operations.",
+    skills: ["WordPress", "Shopify", "WooCommerce", "Shopify Liquid"]
   }
 ]
 
